@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CBSE Results 2025 - Student Login</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f5f9fc;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .login-container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            width: 350px;
+            text-align: center;
+            border-top: 4px solid #0056b3;
+        }
+        .logo {
+            width: 80px;
+            margin-bottom: 15px;
+        }
+        h2 {
+            color: #0056b3;
+            margin-bottom: 25px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #333;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+        input:focus {
+            outline: none;
+            border-color: #0056b3;
+        }
+        .login-btn {
+            background-color: #0056b3;
+            color: white;
+            border: none;
+            padding: 12px;
+            width: 100%;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .login-btn:hover {
+            background-color: #003d82;
+        }
+        .error {
+            color: #d9534f;
+            margin-top: 10px;
+            font-size: 14px;
+            display: none;
+        }
+        .instructions {
+            font-size: 13px;
+            color: #666;
+            margin-top: 20px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <img src="https://www.cbse.gov.in/cbsenew/cbse-logo.png" alt="CBSE Logo" class="logo">
+        <h2>Senior Secondary Examination 2025</h2>
+        
+        <div class="form-group">
+            <label for="rollno">Roll Number</label>
+            <input type="text" id="rollno" placeholder="Enter your roll number">
+        </div>
+        
+        <div class="form-group">
+            <label for="dob">Date of Birth (DDMMYYYY)</label>
+            <input type="password" id="dob" placeholder="Enter your date of birth">
+        </div>
+        
+        <div id="errorMsg" class="error">Invalid Roll Number or Date of Birth</div>
+        
+        <button class="login-btn" onclick="validateLogin()">VIEW RESULT</button>
+        
+        <div class="instructions">
+            <p><strong>Note:</strong> Use your 8-digit roll number and date of birth in DDMMYYYY format as password.</p>
+        </div>
+    </div>
+
+    <script>
+        function validateLogin() {
+            const rollNo = document.getElementById('rollno').value;
+            const dob = document.getElementById('dob').value;
+            const errorMsg = document.getElementById('errorMsg');
+            
+            // Correct credentials (Roll No: 15617427, DOB: 28022008)
+            if (rollNo === '15617427' && dob === '28022008') {
+                window.location.href = 'res.html'; // Redirect to results page
+            } else {
+                errorMsg.style.display = 'block';
+                setTimeout(() => {
+                    errorMsg.style.display = 'none';
+                }, 3000);
+            }
+        }
+        
+        // Allow form submission on Enter key
+        document.getElementById('dob').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                validateLogin();
+            }
+        });
+    </script>
+</body>
+</html>
