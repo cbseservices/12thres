@@ -49,11 +49,7 @@
             font-size: 16px;
             box-sizing: border-box;
         }
-        input:focus {
-            outline: none;
-            border-color: #0056b3;
-        }
-        .login-btn {
+        button {
             background-color: #0056b3;
             color: white;
             border: none;
@@ -62,22 +58,12 @@
             border-radius: 4px;
             font-size: 16px;
             cursor: pointer;
-            transition: background-color 0.3s;
-        }
-        .login-btn:hover {
-            background-color: #003d82;
+            margin-top: 10px;
         }
         .error {
-            color: #d9534f;
-            margin-top: 10px;
-            font-size: 14px;
+            color: red;
+            margin-top: 15px;
             display: none;
-        }
-        .instructions {
-            font-size: 13px;
-            color: #666;
-            margin-top: 20px;
-            text-align: left;
         }
     </style>
 </head>
@@ -88,46 +74,32 @@
         
         <div class="form-group">
             <label for="rollno">Roll Number</label>
-            <input type="text" id="rollno" placeholder="Enter your roll number">
+            <input type="text" id="rollno" placeholder="Enter 15617427">
         </div>
         
         <div class="form-group">
             <label for="dob">Date of Birth (DDMMYYYY)</label>
-            <input type="password" id="dob" placeholder="Enter your date of birth">
+            <input type="password" id="dob" placeholder="Enter 28022008">
         </div>
         
-        <div id="errorMsg" class="error">Invalid Roll Number or Date of Birth</div>
+        <div id="errorMsg" class="error">Invalid credentials. Use Roll: 15617427 and DOB: 28022008</div>
         
-        <button class="login-btn" onclick="validateLogin()">VIEW RESULT</button>
-        
-        <div class="instructions">
-            <p><strong>Note:</strong> Use your 8-digit roll number and date of birth in DDMMYYYY format as password.</p>
-        </div>
+        <button onclick="checkLogin()">VIEW RESULT</button>
     </div>
 
     <script>
-        function validateLogin() {
+        function checkLogin() {
             const rollNo = document.getElementById('rollno').value;
             const dob = document.getElementById('dob').value;
             const errorMsg = document.getElementById('errorMsg');
             
-            // Correct credentials (Roll No: 15617427, DOB: 28022008)
-            if (rollNo === '15617427' && dob === '15022008') {
-                window.location.href = 'res.html'; // Redirect to results page
+            // Correct credentials (case-sensitive)
+            if (rollNo === '15617427' && dob === '28022008') {
+                window.location.href = 'res.html'; // Redirect to results
             } else {
-                errorMsg.style.display = 'block';
-                setTimeout(() => {
-                    errorMsg.style.display = 'none';
-                }, 3000);
+                errorMsg.style.display = 'block'; // Show error
             }
         }
-        
-        // Allow form submission on Enter key
-        document.getElementById('dob').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                validateLogin();
-            }
-        });
     </script>
 </body>
 </html>
